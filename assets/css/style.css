@@ -61,6 +61,22 @@ body {
 
 #timer {
   font-size: 22px;
+  font-weight: bold;
+  color:#000;
+}
+
+#question_div {
+  font-size: 23px;
+  font-family: garamond;
+  margin: 15px 0 0 0;
+}
+
+#choices_div {
+  padding: 5px;
+}
+
+#choices_div button {
+  background: #1b7cc8;
 }
 
 .wrappper{
@@ -119,7 +135,7 @@ button:hover{
       @include transition;
       background:#fff;
       border: solid 1px #fff;
-      color:#78e3de;
+      color:#1bbeff;
     }
 }
 

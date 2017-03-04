@@ -6,6 +6,8 @@ var answerC;
 
 var answerD;
 
+var userPick;
+
 var correctAnswer;
 
 var incorrectAnswer;
@@ -46,8 +48,9 @@ var count=30;
 //  } ]
 
 var disneyQuestion = [{
-    question: "In Aladdin, what is the name of Jasmine’s pet tiger?",
+    question: "In Aladdin, what is the name of Jasmine's pet tiger?",
     choices: ["Rajah", "Bo", "Iago", "Jack" ],
+    images:  ["../images/Rajah.gif"],
     validAnswer: 0
   }, {
     question:"In Peter Pan, Captain Hook had a hook on which part of his body?",
@@ -81,7 +84,7 @@ var disneyQuestion = [{
 
   }, {
     question:"In Bambi, what word does the owl use to describe falling in love?",
-    choices: ["whimsical", "Miserable", "Joyful", "Twitterpatted"],
+    choices: ["Whimsical", "Miserable", "Joyful", "Twitterpatted"],
     validAnswer: 3
 
   }
@@ -90,26 +93,68 @@ var disneyQuestion = [{
 
 $("#start_button").click(function(){
     $(this).hide();
+    counter = setInterval(timer, 1000); //1000 will  run it every 1 second
+    displayTrivia();
+}); 
 
-  var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
 
-  function timer()
-  {
-    count--;
-    if (count <= 0)
-    {
-       clearInterval(counter);
-       //counter ended, do something here
-       return;
-    }
-
-    $("#timer").html("Time remaining: " + "00:" + count + " secs");
-    
-  function displayQuestion() {
-    $("#question_div").html(disneyQuestion[count]);
+function timer(){
+  count--;
+  if (count <= 0) {
+     clearInterval(counter);
+     //counter ended, do something here
+     return;
   }
 
+  $("#timer").html("Time remaining: " + "00:" + count + " secs");
 }
+
+  
+  function displayTrivia() {
+    $("#question_div").html(disneyQuestion[0].question);
+    // $("#question_div").append("<p>" + disneyQuestion[0].choices + "</p>");
+  
+      var choicesArr = disneyQuestion[0].choices;
+      var buttonsArr = [];
+
+      for (let i = 0; i < choicesArr.length; i++) {
+        var button = $('<button>');
+        button.text(choicesArr[i]);
+        button.attr('data-id', i);
+        $('#choices_div').append(button);
+
+        // buttonsArr.push(button);
+
+        // var newDiv = $("<div>");
+        // newDiv.attr("class", "buttons_div");
+        // newDiv.append(button);
+       //  newDiv.append(button);
+       // $("#question_div").append(newDiv);
+      }
+
+  } // closes displayTrivia
+
+$('#choices_div').on('click', 'button', function(e){
+  console.log('clicked answer btn');
+  userPick = $(this).data("id");
+  // console.log(userPick);
+  disneyQuestion[0].validAnswer;
+  if(userPick != disneyQuestion[0].validAnswer) {
+    // console.log("Wrong");
+    $('#choices_div').text("Wrong Answer! The correct answer is Rajah.");
+    // $("#choices_div").html("<img src=" + disneyQuestion[0].images);
+  } else if (userPick === disneyQuestion[0].validAnswer) {
+    $('#choices_div').text("Correct!!! The pet tiger name is Rajah");
+
+
+  }
+  // for (var i = 0; i < choicesArr.length; i++) {
+  //   if(userPick != choicesArr[0]) {
+  //     console.log("wrong!!!");
+  //   }
+  // }
+
+});
     //Grab question #1 from the object and append it to the game_div section//
     //Give the uer 30 seconds for the question//
     //Have the options as a button for user to choose//
@@ -123,7 +168,7 @@ $("#start_button").click(function(){
     //Time remaining will be 30 seconds and it will refresh everytime the user is on a new screen//
 
     //When reaches the last question, user scores will display with corect answers, in-correct and un-pick answer, a message, and replay button//
-});   
+  
 
 //Press start to start the game
 
