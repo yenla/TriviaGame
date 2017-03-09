@@ -76,6 +76,8 @@ function timer(){
   count--;
   if (count <= 0) {
      clearInterval(counter);
+
+     //counter ended, do something here
      return;
   }
 
@@ -223,6 +225,8 @@ setTimeout(function(){
     var choicesArr = disneyQuestion[4].choices;
     var buttonsArr = [];
 
+    $('#choices_div').empty();
+
     for (let i = 0; i < choicesArr.length; i++) {
       var button = $('<button>');
       button.text(choicesArr[i]);
@@ -254,6 +258,8 @@ setTimeout(function(){
     var choicesArr = disneyQuestion[5].choices;
     var buttonsArr = [];
 
+    $('#choices_div').empty();
+
     for (let i = 0; i < choicesArr.length; i++) {
       var button = $('<button>');
       button.text(choicesArr[i]);
@@ -282,6 +288,8 @@ setTimeout(function(){
      
     var choicesArr = disneyQuestion[6].choices;
     var buttonsArr = [];
+
+    $('#choices_div').empty();
 
     for (let i = 0; i < choicesArr.length; i++) {
       var button = $('<button>');
@@ -314,6 +322,8 @@ setTimeout(function(){
     var choicesArr = disneyQuestion[7].choices;
     var buttonsArr = [];
 
+    $('#choices_div').empty();
+
     for (let i = 0; i < choicesArr.length; i++) {
       var button = $('<button>');
       button.text(choicesArr[i]);
@@ -335,3 +345,10 @@ setTimeout(function(){
 
     });
 }, 7000 * 10);
+
+// setTimeout(function(){ 
+
+//   $('#choices_div').text("Correct Answer: " + correctAnswer);
+
+  
+// }, 8000 * 10);
